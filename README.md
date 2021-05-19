@@ -1,2 +1,4 @@
 # AzureFunctions.HealthCheck
-Azure Functions Health Check
+
+- Azure Functions
+- .NET Core 3.1
