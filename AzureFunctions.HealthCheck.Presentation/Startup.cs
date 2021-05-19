@@ -2,6 +2,7 @@
 using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using AzureFunctions.HealthCheck.Presentation;
+using System;
 
 [assembly: WebJobsStartup(typeof(Startup))]
 namespace AzureFunctions.HealthCheck.Presentation
@@ -17,7 +18,11 @@ namespace AzureFunctions.HealthCheck.Presentation
         {
             services.AddLogging();
 
-            services.AddHealthChecks();
+            services.AddHealthChecks()
+                .AddSqlServer(
+                    name: "ConnectionStringSqlServer",
+                    connectionString: Environment.GetEnvironmentVariable("ConnectionStringSqlServer"),
+                    tags: new string[] { "sqlserver" });
         }
     }
 }

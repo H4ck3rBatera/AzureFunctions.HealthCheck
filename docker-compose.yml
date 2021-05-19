@@ -1,8 +1,10 @@
 version: '3.4'
 
 services:
-  webapplication1:
-    image: ${DOCKER_REGISTRY-}webapplication1
-    build:
-      context: .
-      dockerfile: WebApplication1/Dockerfile
+    sqldata:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        environment:
+          - SA_PASSWORD=P@ssword
+          - ACCEPT_EULA=Y
+        ports:
+          - "1433:1433"(localdb)\MSSQLLocalDB

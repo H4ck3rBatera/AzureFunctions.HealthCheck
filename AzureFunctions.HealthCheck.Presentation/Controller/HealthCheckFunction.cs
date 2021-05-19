@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Threading;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System.Collections.ObjectModel;
 
 namespace AzureFunctions.HealthCheck.Presentation.Controller
 {
@@ -28,12 +30,18 @@ namespace AzureFunctions.HealthCheck.Presentation.Controller
 
             var healthReport = await _healthCheck.CheckHealthAsync(cancellationToken);
 
-            var json = JsonSerializer.Serialize(healthReport,
-                    new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true,
-                        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
-                    });
+            string json = JsonConvert.SerializeObject(healthReport, new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                },
+                Formatting = Formatting.Indented,
+                Converters = new Collection<JsonConverter>
+                {
+                     new StringEnumConverter()
+                }
+            });
 
             return new OkObjectResult(json);
         }
