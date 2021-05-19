@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "AzureFunctions.HealthCheck.Presentation": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 31908,
+      "useSSL": false
+    }
+  }
+}
