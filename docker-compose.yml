@@ -1,10 +1,10 @@
 version: '3.4'
 
 services:
-    sqldata:
-        image: mcr.microsoft.com/mssql/server:2017-latest
-        environment:
-          - SA_PASSWORD=P@ssword
-          - ACCEPT_EULA=Y
+    sql_server:
+        image: mcr.microsoft.com/mssql/server:latest
         ports:
-          - "1433:1433"(localdb)\MSSQLLocalDB
+            - "1433:1433"
+        environment:
+            SA_PASSWORD: 'P@ssword'
+            ACCEPT_EULA: 'Y'
