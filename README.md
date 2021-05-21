@@ -120,3 +120,23 @@ services:
             SA_PASSWORD: 'P@ssword'
             ACCEPT_EULA: 'Y'
 ```
+
+### /api/heartbeat
+```json
+{
+  "entries": {
+    "ConnectionStringSqlServer": {
+      "data": {},
+      "description": null,
+      "duration": "00:00:00.5315855",
+      "exception": null,
+      "status": "Healthy",
+      "tags": [
+        "sqlserver"
+      ]
+    }
+  },
+  "status": "Healthy",
+  "totalDuration": "00:00:00.5466440"
+}
+```
